@@ -1,0 +1,16 @@
+--- make.sh.old	2005-01-13 19:41:53.485102552 +0100
++++ make.sh	2005-01-13 19:40:01.866071224 +0100
+@@ -75,10 +75,10 @@
+ 
+ # ==============================================================
+ # system/kernel identification
+-uname_r=`uname -r`
+-uname_v=`uname -v`
++uname_r="${FEDORA_UNAME_R}"
++uname_v="$(grep UTS_VERSION ${KERNEL_PATH}/include/linux/compile.h | cut -d'"' -f2)"
+ uname_s=`uname -s`
+-uname_m=`uname -m`
++uname_m="${FEDORA_UNAME_M}"
+ uname_a=`uname -a`
+ 
+ # if you want to overload the current settings then please enter 1 below
