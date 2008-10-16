@@ -1,14 +1,10 @@
---- 2.6.x/Makefile.old	2005-01-13 19:43:14.938719720 +0100
-+++ 2.6.x/Makefile	2005-01-13 19:40:13.825253152 +0100
-@@ -27,11 +27,7 @@
- KVER            = $(shell uname -r)
- # KVER            = 2.6.0-0.test1.1.26custom
+--- 2.6.x/Makefile.old	2008-10-16 19:35:33.000000000 -0400
++++ 2.6.x/Makefile	2008-10-16 19:36:49.000000000 -0400
+@@ -47,7 +47,7 @@
+ # on first call from remote location we get into this path
+ # whilst on second call all is managed by the embedding kernel makefile
  
--ifeq (1,1)
--KDIR            = /lib/modules/$(KVER)/build
--else
--KDIR            = /usr/src/linux-$(KVER)
--endif
+-KDIR            = /lib/modules/$(shell uname -r)/build
 +KDIR            = $(KERNEL_PATH)
  PWD             = $(shell pwd)
  
