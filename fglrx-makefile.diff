@@ -1,0 +1,15 @@
+--- 2.6.x/Makefile.old	2005-01-13 19:43:14.938719720 +0100
++++ 2.6.x/Makefile	2005-01-13 19:40:13.825253152 +0100
+@@ -27,11 +27,7 @@
+ KVER            = $(shell uname -r)
+ # KVER            = 2.6.0-0.test1.1.26custom
+ 
+-ifeq (1,1)
+-KDIR            = /lib/modules/$(KVER)/build
+-else
+-KDIR            = /usr/src/linux-$(KVER)
+-endif
++KDIR            = $(KERNEL_PATH)
+ PWD             = $(shell pwd)
+ 
+ fglrx-cfiles    = ${fglrx-c-objs:.o=.c}
