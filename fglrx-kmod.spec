@@ -5,7 +5,7 @@
 # a new akmod package will only get build when a new one is actually needed
 #define buildforkernels newest
 
-%define ativersion 8.09
+%define ativersion 8.10
 
 # Tweak to have debuginfo - part 1/2
 %if 0%{?fedora} > 7
@@ -14,8 +14,8 @@
 %endif
 
 Name:        fglrx-kmod
-Version:     8.532
-Release:     3.%{ativersion}%{?dist}.1
+Version:     8.542
+Release:     1.%{ativersion}%{?dist}.1
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -108,6 +108,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Oct 16 2008 Stewart Adam <s.adam at diffingo.com> - 8.542-1.8.10.1
+- Update to 8.10
+
 * Sun Oct 05 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 8.532-3.8.09.1
 - rebuild for rpm fusion
 
