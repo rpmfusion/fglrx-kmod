@@ -15,7 +15,7 @@
 
 Name:        fglrx-kmod
 Version:     8.543
-Release:     0.1.%{ativersion}%{?dist}.1
+Release:     0.2.%{ativersion}%{?dist}.1
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -108,7 +108,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Thu Oct 16 2008 Stewart Adam <s.adam at diffingo.com> - 8.542-0.1.8.11beta.1
+* Thu Oct 16 2008 Stewart Adam <s.adam at diffingo.com> - 8.543-0.2.8.11beta.1
+- Update patches
+
+* Thu Oct 16 2008 Stewart Adam <s.adam at diffingo.com> - 8.543-0.1.8.11beta.1
 - Update to 8.53.4 (Catalyst 8.11beta)
 
 * Thu Oct 16 2008 Stewart Adam <s.adam at diffingo.com> - 8.542-1.8.10.1
