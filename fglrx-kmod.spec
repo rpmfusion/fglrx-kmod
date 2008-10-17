@@ -84,6 +84,7 @@ done
 for kernel_version in %{?kernel_versions}; do
     pushd _kmod_build_${kernel_version%%___*}/lib/modules/fglrx/build_mod/2.6.x
     make CC="gcc" PAGE_ATTR_FIX=0 KERNEL_PATH="${kernel_version##*___}"
+    popd
 done
 
 
@@ -100,6 +101,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Oct 17 2008 Stewart Adam <s.adam at diffingo.com> - 8.543-0.3.8.11beta.2
+- Add the missing "popd"
+
 * Fri Oct 17 2008 kwizart < kwizart at gmail.com > - 8.543-0.3.8.11beta.1
 - Drop the make.sh layer
 
