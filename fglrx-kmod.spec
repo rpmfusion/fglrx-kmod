@@ -15,7 +15,7 @@
 
 Name:        fglrx-kmod
 Version:     8.543
-Release:     0.2.%{ativersion}%{?dist}.1
+Release:     0.3.%{ativersion}%{?dist}.1
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -25,7 +25,6 @@ Source0:     http://www.diffingo.com/downloads/livna/kmod-data/fglrx-kmod-data-%
 Source11:    fglrx-kmodtool-excludekernel-filterfile
 # These control kernel version detection
 Patch1:      fglrx-makefile.diff
-Patch2:      fglrx-makesh.diff
 
 BuildRoot:   %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -74,7 +73,6 @@ find fglrxpkg/lib/modules/fglrx/build_mod/ -type f -print0 | xargs -0 chmod 0644
 # These control kernel version detection
 pushd fglrxpkg/lib/modules/fglrx/build_mod/
 %patch1 -b .patch1
-%patch2 -b .patch2
 popd
 
 for kernel_version  in %{?kernel_versions} ; do
@@ -84,14 +82,8 @@ done
 
 %build
 for kernel_version in %{?kernel_versions}; do
-    pushd _kmod_build_${kernel_version%%___*}/lib/modules/fglrx/build_mod/
-    export AS_USER=y
-    export KERNEL_PATH="${kernel_version##*___}"
-    export FEDORA_UNAME_R="${kernel_version%%___*}"
-    export FEDORA_UNAME_M="%{_target_cpu}"
-    export CC="gcc"
-    bash make.sh verbose
-    popd
+    pushd _kmod_build_${kernel_version%%___*}/lib/modules/fglrx/build_mod/2.6.x
+    make CC="gcc" PAGE_ATTR_FIX=0 KERNEL_PATH="${kernel_version##*___}"
 done
 
 
@@ -108,6 +100,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Oct 17 2008 kwizart < kwizart at gmail.com > - 8.543-0.3.8.11beta.1
+- Drop the make.sh layer
+
 * Thu Oct 16 2008 Stewart Adam <s.adam at diffingo.com> - 8.543-0.2.8.11beta.1
 - Update patches
 
