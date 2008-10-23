@@ -15,7 +15,7 @@
 
 Name:        fglrx-kmod
 Version:     8.542
-Release:     3.%{ativersion}%{?dist}.1
+Release:     4.%{ativersion}%{?dist}.1
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -24,7 +24,8 @@ URL:         http://ati.amd.com/support/drivers/linux/linux-radeon.html
 Source0:     http://www.diffingo.com/downloads/livna/kmod-data/fglrx-kmod-data-%{version}.tar.bz2
 Source11:    fglrx-kmodtool-excludekernel-filterfile
 # These control kernel version detection
-Patch1:      fglrx-makefile.diff
+Patch0:      fglrx-makefile.diff
+Patch1:      fglrx-kmod-2.6.26.5-firegl_public.patch
 
 BuildRoot:   %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -72,7 +73,8 @@ find fglrxpkg/lib/modules/fglrx/build_mod/ -type f -print0 | xargs -0 chmod 0644
 
 # These control kernel version detection
 pushd fglrxpkg/lib/modules/fglrx/build_mod/
-%patch1 -b .patch1
+%patch0 -b .patch0
+%patch1 -b .firegl
 popd
 
 for kernel_version  in %{kernel_versions} ; do
@@ -101,6 +103,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Oct 23 2008 Stewart Adam <s.adam at diffingo.com> - 8.542-4.8.10.1
+- Add patch to fix x86_64 + 2.6.26
+
 * Fri Oct 17 2008 kwizart < kwizart at gmail.com > - 8.542-3.8.10.1
 - Drop the make.sh layer
 
