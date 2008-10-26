@@ -15,7 +15,7 @@
 
 Name:        fglrx-kmod
 Version:     8.543
-Release:     0.3.%{ativersion}%{?dist}.2
+Release:     0.3.%{ativersion}%{?dist}.3
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -101,6 +101,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Oct 26 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 8.543-0.3.8.11beta.3
+- rebuild for latest rawhide kernel
+
 * Sun Oct 19 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 8.543-0.3.8.11beta.2
 - rebuild for latest rawhide kernel
 
