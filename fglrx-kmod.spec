@@ -3,7 +3,7 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-#define buildforkernels newest
+%define buildforkernels newest
 
 %define ativersion 8.11beta
 
@@ -15,7 +15,7 @@
 
 Name:        fglrx-kmod
 Version:     8.543
-Release:     0.3.%{ativersion}%{?dist}.4
+Release:     0.3.%{ativersion}%{?dist}.5
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -101,6 +101,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Nov 12 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 8.543-0.3.8.11beta.5
+- rebuild for latest Fedora kernel;
+
 * Fri Nov 07 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 8.543-0.3.8.11beta.4
 - rebuild for latest Fedora kernel;
 
