@@ -14,7 +14,7 @@
 %endif
 
 Name:        fglrx-kmod
-Version:     8.552
+Version:     8.542
 Release:     1.%{ativersion}%{?dist}.3
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
