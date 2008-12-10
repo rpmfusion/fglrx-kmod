@@ -5,7 +5,7 @@
 # a new akmod package will only get build when a new one is actually needed
 #define buildforkernels newest
 
-%define ativersion 8.11
+%define ativersion 8.12
 
 # Tweak to have debuginfo - part 1/2
 %if 0%{?fedora} > 7
@@ -14,17 +14,15 @@
 %endif
 
 Name:        fglrx-kmod
-Version:     8.552
-Release:     1.%{ativersion}%{?dist}.3
+Version:     8.561
+Release:     1.%{ativersion}%{?dist}
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
 License:     Redistributable, no modification permitted
 URL:         http://ati.amd.com/support/drivers/linux/linux-radeon.html
-Source0:     http://www.diffingo.com/downloads/livna/kmod-data/fglrx-kmod-data-%{version}.tar.bz2
+Source0:     http://downloads.diffingo.com/livna/kmod-data/fglrx-kmod-data-%{version}.tar.bz2
 Source11:    fglrx-kmodtool-excludekernel-filterfile
-# These control kernel version detection
-Patch1:      fglrx-makefile.diff
 
 BuildRoot:   %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -64,16 +62,11 @@ cp -r fglrx/common/* fglrx/arch/x86_64/* fglrxpkg/
 %endif
 
 # proper permissions
-find fglrxpkg/lib/modules/fglrx/build_mod/ usr/share/doc  -type d -print0 | xargs -0 chmod 0755
+find fglrxpkg/lib/modules/fglrx/build_mod/ -type d -print0 | xargs -0 chmod 0755
 find fglrxpkg/lib/modules/fglrx/build_mod/ -type f -print0 | xargs -0 chmod 0644
 
 # debuginfo fix
 #sed -i -e 's|strip -g|/bin/true|' fglrxpkg/lib/modules/fglrx/build_mod/make.sh
-
-# These control kernel version detection
-pushd fglrxpkg/lib/modules/fglrx/build_mod/
-%patch1 -b .patch1
-popd
 
 for kernel_version  in %{?kernel_versions} ; do
     cp -a fglrxpkg/  _kmod_build_${kernel_version%%___*}
@@ -83,7 +76,7 @@ done
 %build
 for kernel_version in %{?kernel_versions}; do
     pushd _kmod_build_${kernel_version%%___*}/lib/modules/fglrx/build_mod/2.6.x
-    make CC="gcc" PAGE_ATTR_FIX=0 KERNEL_PATH="${kernel_version##*___}"
+    make CC="gcc" PAGE_ATTR_FIX=0 KVER="${kernel_version%%___*}"
     popd
 done
 
@@ -101,6 +94,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Dec 10 2008 Stewart Adam <s.adam at diffingo.com> - 8.561-1.8.12
+- Update to 8.12
+- Remove unneeded makefile patch
+
 * Sat Nov 22 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 8.552-1.8.11.3
 - rebuild for latest Fedora kernel;
 
