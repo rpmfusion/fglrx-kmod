@@ -15,7 +15,7 @@
 
 Name:        fglrx-kmod
 Version:     8.561
-Release:     2.%{ativersion}%{?dist}
+Release:     2.%{ativersion}%{?dist}.1
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -97,6 +97,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Dec 16 2008 Stewart Adam <s.adam at diffingo.com> - 8.561-2.8.12.1
+- retag w/ patches
+
 * Tue Dec 16 2008 Stewart Adam <s.adam at diffingo.com> - 8.561-2.8.12
 - Don't use /lib/modules/$KVER/build, patch in /usr/src/kernels/$KVER instead
 
