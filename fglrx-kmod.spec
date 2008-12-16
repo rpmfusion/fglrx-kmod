@@ -15,7 +15,7 @@
 
 Name:        fglrx-kmod
 Version:     8.561
-Release:     1.%{ativersion}%{?dist}.1
+Release:     2.%{ativersion}%{?dist}
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -23,6 +23,7 @@ License:     Redistributable, no modification permitted
 URL:         http://ati.amd.com/support/drivers/linux/linux-radeon.html
 Source0:     http://downloads.diffingo.com/livna/kmod-data/fglrx-kmod-data-%{version}.tar.bz2
 Source11:    fglrx-kmodtool-excludekernel-filterfile
+Patch0:      makefile-kver-path.patch
 
 BuildRoot:   %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -51,6 +52,8 @@ kmodtool  --target %{_target_cpu} --repo rpmfusion --kmodname %{name} --filterfi
 cp -p %{_prefix}/lib/rpm/find-debuginfo.sh .
 sed -i -e 's|strict=true|strict=false|' find-debuginfo.sh
 %endif
+
+%patch0
 
 mkdir fglrxpkg
 %ifarch %{ix86}
@@ -94,6 +97,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Dec 16 2008 Stewart Adam <s.adam at diffingo.com> - 8.561-2.8.12
+- Don't use /lib/modules/$KVER/build, patch in /usr/src/kernels/$KVER instead 
+
 * Sun Dec 14 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 8.561-1.8.12.1
 - rebuild for latest Fedora kernel;
 
