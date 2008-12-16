@@ -15,7 +15,7 @@
 
 Name:        fglrx-kmod
 Version:     8.561
-Release:     1.%{ativersion}%{?dist}
+Release:     1.%{ativersion}%{?dist}.1
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -94,6 +94,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Dec 16 2008 Stewart Adam <s.adam at diffingo.com> - 8.561-1.8.12.1
+- Fix sources file (contained sha1sum instead of md5sum)
+
 * Tue Dec 16 2008 Stewart Adam <s.adam at diffingo.com> - 8.561-1.8.12
 - Update to 8.12
 - Remove unneeded makefile patch
