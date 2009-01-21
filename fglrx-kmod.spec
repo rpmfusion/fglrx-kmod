@@ -15,7 +15,7 @@
 
 Name:        fglrx-kmod
 Version:     8.561
-Release:     2.%{ativersion}%{?dist}.2
+Release:     2.%{ativersion}%{?dist}.3
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -97,6 +97,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Jan 21 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 8.561-2.8.12.3
+- rebuild for latest Fedora kernel;
+
 * Sat Dec 20 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 8.561-2.8.12.2
 - rebuild for latest Fedora kernel;
 
