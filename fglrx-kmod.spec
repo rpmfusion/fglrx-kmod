@@ -3,9 +3,9 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%define buildforkernels newest
+#define buildforkernels newest
 
-%define ativersion 8.12
+%define ativersion 9.1
 
 # Tweak to have debuginfo - part 1/2
 %if 0%{?fedora} > 7
@@ -14,14 +14,14 @@
 %endif
 
 Name:        fglrx-kmod
-Version:     8.561
-Release:     2.%{ativersion}%{?dist}.3
+Version:     8.573
+Release:     1.%{ativersion}%{?dist}
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
 License:     Redistributable, no modification permitted
 URL:         http://ati.amd.com/support/drivers/linux/linux-radeon.html
-Source0:     http://downloads.diffingo.com/livna/kmod-data/fglrx-kmod-data-%{version}.tar.bz2
+Source0:     http://downloads.diffingo.com/rpmfusion/kmod-data/fglrx-kmod-data-%{version}.tar.bz2
 Source11:    fglrx-kmodtool-excludekernel-filterfile
 Patch0:      makefile-kver-path.patch
 
@@ -97,6 +97,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sat Jan 31 2009 Stewart Adam <s.adam at diffingo.com> - 8.573-1.9.1
+- Update to Catalyst 9.1
+
 * Sat Jan 24 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 8.561-2.8.12.3
 - rebuild for latest Fedora kernel;
 
