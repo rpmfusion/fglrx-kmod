@@ -3,9 +3,7 @@
 # "buildforkernels newest" macro for just that build; immediately after
 # queuing that build enable the macro again for subsequent builds; that way
 # a new akmod package will only get build when a new one is actually needed
-%define buildforkernels newest
-
-%define ativersion 9.1
+#define buildforkernels newest
 
 # Tweak to have debuginfo - part 1/2
 %if 0%{?fedora} > 7
@@ -14,8 +12,8 @@
 %endif
 
 Name:        fglrx-kmod
-Version:     8.573
-Release:     1.%{ativersion}%{?dist}.2
+Version:     9.2
+Release:     1%{?dist}
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -97,6 +95,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Feb 20 2009 Stewart Adam <s.adam at diffingo.com> - 9.2-1
+- Update to Catalyst 9.2
+- Use Catalyst version for Version tag instead of internal driver version
+
 * Sun Feb 15 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 8.573-1.9.1.2
 - rebuild for latest Fedora kernel;
 
