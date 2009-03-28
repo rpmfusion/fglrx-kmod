@@ -12,18 +12,19 @@
 %endif
 
 Name:        fglrx-kmod
-Version:     9.2
-Release:     2%{?dist}
+Version:     9.4
+Release:     0.1.beta%{?dist}
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
 License:     Redistributable, no modification permitted
 URL:         http://ati.amd.com/support/drivers/linux/linux-radeon.html
-Source0:     http://downloads.diffingo.com/rpmfusion/kmod-data/fglrx-kmod-data-%{version}.tar.bz2
+Source0:     http://downloads.diffingo.com/rpmfusion/kmod-data/fglrx-kmod-data-%{version}-beta.tar.bz2
 Source11:    fglrx-kmodtool-excludekernel-filterfile
 Patch0:      makefile-kver-path.patch
-Patch1:      fglrx-flush_tlb_page_nosmpcheck.patch
-
+#Patch1:      fglrx-flush_tlb_page_nosmpcheck.patch
+# from http://liquorix.net/patches/FGLRX-2.6.29-9.2-5.diff
+Patch2:      fglrx-2.6.29.patch
 BuildRoot:   %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 # needed for plague to make sure it builds for i586 and i686
@@ -53,7 +54,10 @@ sed -i -e 's|strict=true|strict=false|' find-debuginfo.sh
 %endif
 
 %patch0
-%patch1
+#patch1
+pushd fglrx
+%patch2 -p1
+popd
 
 mkdir fglrxpkg
 %ifarch %{ix86}
@@ -96,6 +100,12 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sat Mar 28 2009 Stewart Adam <s.adam at diffingo.com> - 9.4-0.1.beta
+- Update to Catalyst 9.4 (beta)
+
+* Sat Mar 28 2009 Stewart Adam <s.adam at diffingo.com> - 9.3-1
+- Update to Catalyst 9.3
+
 * Sat Feb 21 2009 Stewart Adam <s.adam at diffingo.com> - 9.2-2
 - Fix flush_tlb_page modprobe errors on x86_64
 
