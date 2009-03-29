@@ -13,7 +13,7 @@
 
 Name:        fglrx-kmod
 Version:     9.4
-Release:     0.1.beta%{?dist}
+Release:     0.2.beta%{?dist}
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -100,6 +100,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Mar 29 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 9.4-0.2.beta
+- rebuild for new F11 features
+
 * Sat Mar 28 2009 Stewart Adam <s.adam at diffingo.com> - 9.4-0.1.beta
 - Update to Catalyst 9.4 (beta)
 
