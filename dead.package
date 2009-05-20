@@ -1,0 +1,2 @@
+This package was replaced by xorg-x11-drv-catalyst because AMD doesn't support r300 devices anymore.
+The last release to support them is 9.3. But it cannot build for 2.6.29 kernels and beyond.
