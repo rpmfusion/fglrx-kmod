@@ -13,7 +13,7 @@
 
 Name:        fglrx-kmod
 Version:     9.3
-Release:     1%{?dist}.11
+Release:     1%{?dist}.12
 # Taken over by kmodtool
 Summary:     AMD display driver kernel module
 Group:       System Environment/Kernel
@@ -96,6 +96,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Aug 23 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 9.3-1.12
+- rebuild for new kernels
+
 * Sat Aug 22 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 9.3-1.11
 - rebuild for new kernels
 
